@@ -14,5 +14,8 @@ func main() {
 		}
 	})
 
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServeTLS(":443", "server.crt", "server.key", nil)
+	if err != nil {
+		fmt.Println(err)
+	}
 }

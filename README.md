@@ -9,20 +9,23 @@ Find below the web server source code:
 package main
 
 import (
-	"fmt"
-	"net/http"
+        "fmt"
+        "net/http"
 )
 
 func main() {
-	http.HandleFunc("/tunnel", func(w http.ResponseWriter, r *http.Request) {
-		for name, values := range r.Header {
-			for _, value := range values {
-				fmt.Fprintf(w, "%v: %v\n", name, value)
-			}
-		}
-	})
+        http.HandleFunc("/tunnel", func(w http.ResponseWriter, r *http.Request) {
+                for name, values := range r.Header {
+                        for _, value := range values {
+                                fmt.Fprintf(w, "%v: %v\n", name, value)
+                        }
+                }
+        })
 
-	http.ListenAndServe(":8080", nil)
+        err := http.ListenAndServeTLS(":443", "server.crt", "server.key", nil)
+        if err != nil {
+                fmt.Println(err)
+        }
 }
 ```
 
