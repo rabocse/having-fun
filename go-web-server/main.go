@@ -19,3 +19,10 @@ func main() {
 		fmt.Println(err)
 	}
 }
+
+/*
+
+By using openssl, I created a self signed certificated for hte HTTPS server and it worked.
+Therefore the files "server.crt" and "server.key".
+
+*/
